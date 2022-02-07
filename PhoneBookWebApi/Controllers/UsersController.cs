@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Dme.PhoneBook.Data;
 using Dme.PhoneBook.Model;
+using Dme.PhoneBook.WebAPI.Models; // TODO:
 
 namespace Dme.PhoneBook.WebAPI.Controllers
 {
@@ -25,11 +26,11 @@ namespace Dme.PhoneBook.WebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public IActionResult GetUsers([FromQuery] Ordering ordering)
         {
-            return await _context.Users.ToListAsync();
+            var values = _context.GetUsers(ordering);
+            return Ok(values);
         }
 
         // GET: api/Users/5

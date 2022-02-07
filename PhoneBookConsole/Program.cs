@@ -37,7 +37,7 @@ namespace Dme.PhoneBookConsole
 
                 // store to database
                 SqlServerDbContext context = new SqlServerDbContext(appConfig.ConnectionString);
-                //context.BulkInsert(users);
+                context.BulkInsert(users);
                 var c = context.Count();
 
                 Console.WriteLine($"{c} users in database"); 
