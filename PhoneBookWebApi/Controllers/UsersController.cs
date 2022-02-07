@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Dme.PhoneBook.Data;
 using Dme.PhoneBook.Model;
-using Dme.PhoneBook.WebAPI.Models; // TODO:
 
 namespace Dme.PhoneBook.WebAPI.Controllers
 {
@@ -28,7 +27,7 @@ namespace Dme.PhoneBook.WebAPI.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public IActionResult GetUsers([FromQuery] QueryStringParameters qsp)
+        public IActionResult GetUsers([FromQuery] UserQueryStringParameters qsp)
         {
             var values = _context.GetUsers(qsp);
             return Ok(values);

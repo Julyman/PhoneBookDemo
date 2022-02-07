@@ -10,8 +10,9 @@ API «Телефонный справочник»
 2
 Web API
 проект PhoneBookWebApi
-сортировка по дате и ФИО включена по умолчанию - или надо было опционировать по параметрам запроса?
-постраничный вывод записей реализован через параметры запроса PageNumber и PageSize
+	сортировка: orderBy
+	постраничный вывод: PageNumber и PageSize
+URL example "https://localhost:44382/api/users?PageSize=20&PageNumber=1&OrderBy=firstName desc"
 завершено	 
 
 Дополнительные задания
