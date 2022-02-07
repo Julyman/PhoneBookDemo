@@ -26,10 +26,11 @@ namespace Dme.PhoneBook.WebAPI.Controllers
             _context = context;
         }
 
+        // GET: api/Users
         [HttpGet]
-        public IActionResult GetUsers([FromQuery] Ordering ordering)
+        public IActionResult GetUsers([FromQuery] QueryStringParameters qsp)
         {
-            var values = _context.GetUsers(ordering);
+            var values = _context.GetUsers(qsp);
             return Ok(values);
         }
 
