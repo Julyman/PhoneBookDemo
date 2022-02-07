@@ -54,6 +54,7 @@ namespace Dme.PhoneBookConsole.Data
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
                 cnn.Open();
+
                 using (SqlTransaction transaction = cnn.BeginTransaction())
                 {
                     try
@@ -113,34 +114,40 @@ namespace Dme.PhoneBookConsole.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>")]
         private static void BulkInsert(SqlConnection cnn, SqlTransaction transaction, IEnumerable<User> users)
         {
-            const string query = "INSERT INTO [User] (FirstName, LastName, Dob, PictureThumbnail) VALUES (@FirstName, @LastName, @Dob, @PictureThumbnail)";
-            using (SqlCommand cmd = new SqlCommand(query, cnn, transaction))
+            #region Map items to data table
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn("FirstName", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("LastName", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Dob", typeof(DateTime)));
+            dataTable.Columns.Add(new DataColumn("PictureThumbnail", typeof(string)));
+
+            foreach (var user in users)
             {
-                cmd.CommandType = CommandType.Text;
-                SqlParameter firstName = cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar);
-                SqlParameter lasttName = cmd.Parameters.Add("@LastName", SqlDbType.NVarChar);
-                SqlParameter dob = cmd.Parameters.Add("@Dob", SqlDbType.DateTime2);
+                DataRow dataRow = dataTable.NewRow();
 
-                // null accepted parameter
-                SqlParameter pictureThumbnail = cmd.Parameters.Add("@PictureThumbnail", SqlDbType.NVarChar);
-                pictureThumbnail.IsNullable = true;
+                dataRow["FirstName"] = user.FirstName;
+                dataRow["LastName"] = user.LastName;
+                dataRow["Dob"] = user.Dob;
+                dataRow["PictureThumbnail"] = user.PictureThumbnail;
 
-                foreach (var user in users)
-                {
-                    // TODO: CancellationPending maybe here for asynchronous code version
-
-                    firstName.Value = user.FirstName;
-                    lasttName.Value = user.LastName;
-                    dob.Value = user.Dob;
-                    if (user.PictureThumbnail == null)
-                        pictureThumbnail.Value = DBNull.Value;
-                    else
-                        pictureThumbnail.Value = user.PictureThumbnail;
-
-                    cmd.ExecuteNonQuery();
-                }
+                dataTable.Rows.Add(dataRow);
             }
-        } 
+            #endregion
+
+            #region Bulk insert
+            using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(cnn, SqlBulkCopyOptions.Default, transaction))
+            {
+                sqlBulkCopy.DestinationTableName = "dbo.[User]";
+                sqlBulkCopy.ColumnMappings.Add("FirstName", "FirstName");
+                sqlBulkCopy.ColumnMappings.Add("LastName", "LastName");
+                sqlBulkCopy.ColumnMappings.Add("Dob", "Dob");
+                sqlBulkCopy.ColumnMappings.Add("PictureThumbnail", "PictureThumbnail");
+
+                // do mass insertion
+                sqlBulkCopy.WriteToServer(dataTable);
+            } 
+            #endregion
+        }
         #endregion
     }
 }
