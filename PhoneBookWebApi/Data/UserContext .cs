@@ -3,7 +3,7 @@
  * Creator      P.Rykov(julyman@yandex.ru)
  */
 
-using Dme.PhoneBook.Model;
+using Dme.PhoneBook.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

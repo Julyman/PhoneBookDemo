@@ -13,8 +13,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using Dme.PhoneBook.Model;
+using Dme.PhoneBook.Models;
 
+#pragma warning disable IDE0063 // Use simple 'using' statement
 namespace Dme.PhoneBookConsole.Data
 {
     /// <summary>
@@ -45,11 +46,11 @@ namespace Dme.PhoneBookConsole.Data
         /// <param name="users">Items for insertions.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="users"/> is null.</exception>
         /// <exception cref="SqlException">Insertion operation failed.</exception>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>")]
         public void BulkInsert(IEnumerable<User> users)
         {
             if (users == null)
                 throw new ArgumentNullException(nameof(users));
+
 
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
@@ -76,7 +77,6 @@ namespace Dme.PhoneBookConsole.Data
         /// Acquires the number of records in [User] table.
         /// </summary>
         /// <returns>Number of records.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>")]
         public int Count()
         {
             int value = 0;
@@ -96,10 +96,24 @@ namespace Dme.PhoneBookConsole.Data
             }
             return value;
         }
+
+        public void Initialize()
+        {
+            var csb = new SqlConnectionStringBuilder(_connectionString);
+            string masterConnectionString = $"Server={csb.DataSource};Database=Master;Integrated Security=True;";
+            string dbName = csb.InitialCatalog;
+
+            using (var sqlConnection = new SqlConnection(masterConnectionString))
+            {
+                sqlConnection.Open();
+                InitDataBase(sqlConnection, dbName);
+                InitUserTable(sqlConnection, dbName);
+                Debug.WriteLine($"{nameof(SqlServerDbContext)}.{nameof(Initialize)} done");
+            }
+        }
         #endregion
 
         #region Private methods
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>")]
         public static void BulkDelete(SqlConnection cnn, SqlTransaction transaction)
         {
             string query = "DELETE FROM [User]";
@@ -110,8 +124,6 @@ namespace Dme.PhoneBookConsole.Data
                 Debug.WriteLine($"deleted rows {count}");
             }
         }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>")]
         private static void BulkInsert(SqlConnection cnn, SqlTransaction transaction, IEnumerable<User> users)
         {
             #region Map items to data table
@@ -148,6 +160,43 @@ namespace Dme.PhoneBookConsole.Data
             } 
             #endregion
         }
+
+        private static void InitDataBase(SqlConnection sqlConnection, string dbName)
+        {
+            var query = string.Format(@"
+	            IF NOT EXISTS(SELECT * FROM sys.databases WHERE name='{0}')
+	            BEGIN
+					DECLARE @FILENAME AS VARCHAR(255)
+					SET @FILENAME = CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath')) + '{0}';
+					EXEC ('CREATE DATABASE [{0}] ON PRIMARY 
+						(NAME = [{0}], 
+						FILENAME =''' + @FILENAME + ''', 
+						SIZE = 10MB, 
+						MAXSIZE = 50MB, 
+						FILEGROWTH = 10% )')
+	            END;", dbName);
+
+            using (var sqlCommand = new SqlCommand(query, sqlConnection))
+                sqlCommand.ExecuteNonQuery();
+        }
+        private static void InitUserTable(SqlConnection sqlConnection, string dbName)
+        {
+            string query = string.Format(@"
+	            USE [{0}];
+				IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[User]') AND type = N'U')
+				BEGIN
+					CREATE TABLE [dbo].[User] (
+						[Id]               BIGINT         IDENTITY (1, 1) NOT NULL,
+						[FirstName]        NVARCHAR (MAX) NOT NULL,
+						[LastName]         NVARCHAR (MAX) NOT NULL,
+						[Dob]              DATETIME2 (7)  NOT NULL,
+						[PictureThumbnail] NVARCHAR (MAX) NULL)
+				END;", dbName);
+
+            using (var sqlCommand = new SqlCommand(query, sqlConnection))
+                sqlCommand.ExecuteNonQuery();
+        }
         #endregion
     }
 }
+#pragma warning restore IDE0063 // Use simple 'using' statement

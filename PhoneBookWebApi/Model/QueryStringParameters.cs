@@ -1,4 +1,4 @@
-﻿namespace Dme.PhoneBook.Model
+﻿namespace Dme.PhoneBook.Models
 {
     /// <summary>
     /// Base class of pagination parameters.

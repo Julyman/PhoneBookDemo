@@ -35,8 +35,12 @@ namespace Dme.PhoneBookConsole
                 // map entities
                 var users = SimpleMapper.Map(randomUsers.Results);
 
-                // store to database
+
+                // database initializing
                 SqlServerDbContext context = new SqlServerDbContext(appConfig.ConnectionString);
+                context.Initialize();
+
+                // store to database
                 context.BulkInsert(users);
                 var c = context.Count();
 

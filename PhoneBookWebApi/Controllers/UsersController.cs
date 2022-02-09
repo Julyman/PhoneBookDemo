@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Dme.PhoneBook.Data;
-using Dme.PhoneBook.Model;
+using Dme.PhoneBook.Models;
 
 namespace Dme.PhoneBook.WebAPI.Controllers
 {

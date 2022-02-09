@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Dme.PhoneBook.Model
+namespace Dme.PhoneBook.Models
 {
     public class User
     {

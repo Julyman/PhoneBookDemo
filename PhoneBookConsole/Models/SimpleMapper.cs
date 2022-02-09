@@ -4,7 +4,7 @@
  */
 
 using System.Collections.Generic;
-using Dme.PhoneBook.Model;
+using Dme.PhoneBook.Models;
 
 namespace Dme.PhoneBookConsole.Models
 {
