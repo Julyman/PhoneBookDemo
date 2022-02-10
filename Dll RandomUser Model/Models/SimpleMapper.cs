@@ -1,4 +1,4 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     RandomUser.Model
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using Dme.PhoneBook.Models;
 
-namespace Dme.PhoneBookConsole.Models
+namespace Dme.RandomUser.Model
 {
     /// <summary>
     /// Entities mapper class.

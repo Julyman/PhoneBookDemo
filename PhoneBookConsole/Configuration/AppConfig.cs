@@ -1,4 +1,4 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     PhoneBookConsole (console application)
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
@@ -6,7 +6,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 
-namespace Dme.PhoneBookConsole.Configuration
+namespace Dme.PhoneBook.Configuration
 {
     /// <summary>
     /// Application configuration class.
@@ -40,10 +40,10 @@ namespace Dme.PhoneBookConsole.Configuration
             var recordCount = Configuration["RecordCount"];
             if (string.IsNullOrEmpty(recordCount))
                 throw new ArgumentNullException(nameof(recordCount));
-            RecordsCount = int.Parse(recordCount);
+            RecordCount = int.Parse(recordCount);
 
-            if (RecordsCount < 0)
-                throw new ArgumentOutOfRangeException(nameof(RecordsCount));
+            if (RecordCount < 0)
+                throw new ArgumentOutOfRangeException(nameof(RecordCount));
 
         }
         #endregion
@@ -62,7 +62,7 @@ namespace Dme.PhoneBookConsole.Configuration
         /// <summary>
         /// Gets or sets the amount of records.
         /// </summary>
-        public int RecordsCount { get; set; } 
+        public int RecordCount { get; set; } 
         #endregion
     }
 }

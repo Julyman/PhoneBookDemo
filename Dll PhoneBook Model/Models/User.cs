@@ -1,4 +1,4 @@
-﻿/* Assembly     PhoneBook.Model (Dll PhoneBook Model)
+﻿/* Assembly     PhoneBook.Model
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */

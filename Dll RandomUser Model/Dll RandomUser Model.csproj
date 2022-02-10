@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Dme.RandomUser.Model</RootNamespace>
+    <AssemblyName>RandomUser.Model</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dll PhoneBook Model\Dll PhoneBook Model.csproj" />
+  </ItemGroup>
+
+</Project>

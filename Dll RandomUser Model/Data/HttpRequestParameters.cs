@@ -1,4 +1,4 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     RandomUser.Model
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
@@ -8,12 +8,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace Dme.PhoneBookConsole.Configuration
+namespace Dme.RandomUser.Data
 {
     /// <summary>
     /// HTTP request parameters class.
     /// </summary>
-    class RequestParams
+    public class HttpRequestParameters
     {
         #region Properties
         /// <summary>
@@ -41,18 +41,18 @@ namespace Dme.PhoneBookConsole.Configuration
         /// <summary>
         /// Define a parameters for HTTP request.
         /// </summary>
-        /// <param name="appConfig">Application setting.</param>
+        /// <param name="recordCount">Amount of records.</param>
+        /// <param name="dataSourceHost">URL to service.</param>
         /// <returns>HTTP request parameters.</returns>
-        public static RequestParams Default(AppConfig appConfig)
+        public static HttpRequestParameters Default(int recordCount, string dataSourceHost)
         {
-            var value = new RequestParams
+            return new HttpRequestParameters
             {
-                Count = appConfig.RecordsCount,
+                Count = recordCount,
                 Fields = new List<string> { "name", "dob", "picture" },
-                Host = appConfig.DataSourceHost,
+                Host = dataSourceHost,
                 Nationalities = new List<string> { "US" },
             };
-            return value;
         }
 
         /// <summary>

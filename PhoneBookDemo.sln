@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookWebApi", "PhoneBookWebApi\PhoneBookWebApi.csproj", "{495B1B4F-BE14-44E0-9A7D-0FEEE8CD1085}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookConsole EF", "PhoneBookConsole EF\PhoneBookConsole EF.csproj", "{26D56BB2-A862-4E01-8A51-BA820C2DB87A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dll RandomUser Model", "Dll RandomUser Model\Dll RandomUser Model.csproj", "{DAAB65DD-59E4-41AB-B721-68C3BF417758}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,14 @@ Global
 		{495B1B4F-BE14-44E0-9A7D-0FEEE8CD1085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{495B1B4F-BE14-44E0-9A7D-0FEEE8CD1085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{495B1B4F-BE14-44E0-9A7D-0FEEE8CD1085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D56BB2-A862-4E01-8A51-BA820C2DB87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D56BB2-A862-4E01-8A51-BA820C2DB87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D56BB2-A862-4E01-8A51-BA820C2DB87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D56BB2-A862-4E01-8A51-BA820C2DB87A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAAB65DD-59E4-41AB-B721-68C3BF417758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAAB65DD-59E4-41AB-B721-68C3BF417758}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAAB65DD-59E4-41AB-B721-68C3BF417758}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAAB65DD-59E4-41AB-B721-68C3BF417758}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

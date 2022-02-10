@@ -1,4 +1,4 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     PhoneBookConsole (console application)
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
@@ -16,7 +16,7 @@ using System.Diagnostics;
 using Dme.PhoneBook.Models;
 
 #pragma warning disable IDE0063 // Use simple 'using' statement
-namespace Dme.PhoneBookConsole.Data
+namespace Dme.PhoneBook.Data
 {
     /// <summary>
     /// Data storage layer class.
@@ -40,6 +40,22 @@ namespace Dme.PhoneBookConsole.Data
         #endregion
 
         #region Public methods
+        /// <summary>
+        /// Delete all records from [User] table.
+        /// </summary>
+        /// <param name="cnn">DB connection.</param>
+        /// <param name="transaction">DB transaction.</param>
+        public static void BulkDelete(SqlConnection cnn, SqlTransaction transaction)
+        {
+            string query = "DELETE FROM [User]";
+            using (SqlCommand cmd = new SqlCommand(query, cnn, transaction))
+            {
+                cmd.CommandType = CommandType.Text;
+                int count = cmd.ExecuteNonQuery();
+                Debug.WriteLine($"deleted rows {count}");
+            }
+        }
+
         /// <summary>
         /// Insert records to [User] table.
         /// </summary>
@@ -97,6 +113,9 @@ namespace Dme.PhoneBookConsole.Data
             return value;
         }
 
+        /// <summary>
+        /// Method create new DB instance if it's not exists.
+        /// </summary>
         public void Initialize()
         {
             var csb = new SqlConnectionStringBuilder(_connectionString);
@@ -114,16 +133,6 @@ namespace Dme.PhoneBookConsole.Data
         #endregion
 
         #region Private methods
-        public static void BulkDelete(SqlConnection cnn, SqlTransaction transaction)
-        {
-            string query = "DELETE FROM [User]";
-            using (SqlCommand cmd = new SqlCommand(query, cnn, transaction))
-            {
-                cmd.CommandType = CommandType.Text;
-                int count = cmd.ExecuteNonQuery();
-                Debug.WriteLine($"deleted rows {count}");
-            }
-        }
         private static void BulkInsert(SqlConnection cnn, SqlTransaction transaction, IEnumerable<User> users)
         {
             #region Map items to data table
@@ -160,7 +169,6 @@ namespace Dme.PhoneBookConsole.Data
             } 
             #endregion
         }
-
         private static void InitDataBase(SqlConnection sqlConnection, string dbName)
         {
             var query = string.Format(@"

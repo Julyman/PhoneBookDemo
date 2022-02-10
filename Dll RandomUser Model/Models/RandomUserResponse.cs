@@ -1,4 +1,4 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     RandomUser.Model
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Dme.PhoneBookConsole.Models
+namespace Dme.RandomUser.Model
 {
     [Serializable]
     public class RandomUserResponse

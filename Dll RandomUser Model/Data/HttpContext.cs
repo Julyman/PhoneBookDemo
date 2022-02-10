@@ -1,28 +1,27 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     RandomUser.Model
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
 
+using Dme.RandomUser.Model;
 using Newtonsoft.Json;
-using Dme.PhoneBookConsole.Configuration;
-using Dme.PhoneBookConsole.Models;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Dme.PhoneBookConsole.Data
+namespace Dme.RandomUser.Data
 {
     /// <summary>
     /// HTTP request executor class.
     /// </summary>
-    internal static class HttpContext
+    public static class HttpContext
     {
         /// <summary>
         /// Method receives data from an HTTP request.
         /// </summary>
         /// <param name="requestParams">Url and amount of data rows.</param>
         /// <returns>Requested data set.</returns>
-        public static async Task<RandomUserResponse> DoHttpRequestAsync(RequestParams requestParams)
+        public static async Task<RandomUserResponse> DoHttpRequestAsync(HttpRequestParameters requestParams)
         {
             RandomUserResponse value = null;
             var uri = requestParams.ToUri();

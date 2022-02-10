@@ -1,17 +1,18 @@
-﻿/* Assembly     PhoneBookConsole (PhoneBookConsole app)
+﻿/* Assembly     PhoneBookConsole (console application)
  * Solution     Dme.PhoneBookDemo
  * Creator      P.Rykov(julyman@yandex.ru)
  */
 
-using Dme.PhoneBookConsole.Configuration;
-using Dme.PhoneBookConsole.Data;
-using Dme.PhoneBookConsole.Models;
 using System;
 using System.Data.SqlClient;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Dme.PhoneBook.Configuration;
+using Dme.PhoneBook.Data;
+using Dme.RandomUser.Data;
+using Dme.RandomUser.Model;
 
-namespace Dme.PhoneBookConsole
+namespace Dme.PhoneBook
 {
     class Program
     {
@@ -20,10 +21,10 @@ namespace Dme.PhoneBookConsole
             try
             {
                 // load application settings
-                AppConfig appConfig = new AppConfig();
+                AppConfig config = new AppConfig();
 
                 // define HTTP request parameters
-                RequestParams requestParams = RequestParams.Default(appConfig);
+                HttpRequestParameters requestParams = HttpRequestParameters.Default(config.RecordCount, config.DataSourceHost);
 
                 Console.WriteLine("Press any to begins...");
                 Console.ReadLine();
@@ -35,16 +36,15 @@ namespace Dme.PhoneBookConsole
                 // map entities
                 var users = SimpleMapper.Map(randomUsers.Results);
 
-
                 // database initializing
-                SqlServerDbContext context = new SqlServerDbContext(appConfig.ConnectionString);
+                SqlServerDbContext context = new SqlServerDbContext(config.ConnectionString);
                 context.Initialize();
 
-                // store to database
+                // clear table and insert
                 context.BulkInsert(users);
                 var c = context.Count();
 
-                Console.WriteLine($"{c} users in database"); 
+                Console.WriteLine($"{c} records in database"); 
                 Console.WriteLine("Done");
                 Console.ReadLine();
             }
