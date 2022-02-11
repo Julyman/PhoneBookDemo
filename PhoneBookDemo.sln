@@ -7,16 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dll PhoneBook Model", "Dll 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookConsole", "PhoneBookConsole\PhoneBookConsole.csproj", "{858FC7FC-66DC-40E7-955F-57AD6801F92A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E7A30B9E-C5F5-41B7-A855-8BFDA6909C15}"
-	ProjectSection(SolutionItems) = preProject
-		_readme.txt = _readme.txt
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookWebApi", "PhoneBookWebApi\PhoneBookWebApi.csproj", "{495B1B4F-BE14-44E0-9A7D-0FEEE8CD1085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookConsole EF", "PhoneBookConsole EF\PhoneBookConsole EF.csproj", "{26D56BB2-A862-4E01-8A51-BA820C2DB87A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookConsole EF", "PhoneBookConsole EF\PhoneBookConsole EF.csproj", "{26D56BB2-A862-4E01-8A51-BA820C2DB87A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dll RandomUser Model", "Dll RandomUser Model\Dll RandomUser Model.csproj", "{DAAB65DD-59E4-41AB-B721-68C3BF417758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dll RandomUser Model", "Dll RandomUser Model\Dll RandomUser Model.csproj", "{DAAB65DD-59E4-41AB-B721-68C3BF417758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

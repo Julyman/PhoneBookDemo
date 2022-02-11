@@ -34,7 +34,7 @@ namespace Dme.PhoneBook
                 // HTTP request to retrieve the list
                 users = await LoadAsync();
 
-                Debug.Assert(users != null, $"LoadAsync() don't return null.", "users != null");
+                Debug.Assert(users != null, $"LoadAsync() never returns null.", "users != null");
                 Console.WriteLine($"{users.Count()} records read");
             }
             catch (ArgumentException argumentException)
