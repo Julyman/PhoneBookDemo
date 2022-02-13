@@ -14,15 +14,17 @@ API «Телефонный справочник»
 
 2. Web API
 проект PhoneBookWebApi
-*	сортировка: orderBy
+*	сортировка: OrderBy
 *	постраничный вывод: PageNumber и PageSize
-* URL example "https://localhost:44382/api/users?PageSize=20&PageNumber=1&OrderBy=firstName desc"
+* URL example "/api/users?PageSize=20&PageNumber=1&OrderBy=firstName desc"
 
 *завершено*
 
 Дополнительные задания
+
 5. Web интерфейс тестирования запросов к WEB API
-проект PhoneBookMvcApp демонстрирует работу с WEB API, черновик
+
+PhoneBookMvcApp проект демонстрирует работу с WEB API, черновик
 
 ***********
 
@@ -30,7 +32,8 @@ API «Телефонный справочник»
 
 3. Хранение изображений в БД или файловой системе
 4. Аутентификацию OAuth2
-X. Модульные тесты
+
+TODO: Модульные тесты
 
 
 
