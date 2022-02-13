@@ -3,17 +3,17 @@
  * Creator      P.Rykov(julyman@yandex.ru)
  */
 
+using Dme.PhoneBook.Configuration;
+using Dme.PhoneBook.Data;
+using Dme.PhoneBook.Models;
+using Dme.RandomUser.Data;
+using Dme.RandomUser.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Dme.PhoneBook.Configuration;
-using Dme.PhoneBook.Data;
-using Dme.PhoneBook.Models;
-using Dme.RandomUser.Data;
-using Dme.RandomUser.Model;
 
 namespace Dme.PhoneBook
 {
@@ -73,6 +73,9 @@ namespace Dme.PhoneBook
                     }
                 }
             }
+
+            Console.WriteLine("Done");
+            Console.ReadKey();
         }
 
         #region Private methods
@@ -94,7 +97,7 @@ namespace Dme.PhoneBook
             Console.WriteLine(ex.Message);
             Console.ReadLine();
             Environment.Exit(1);
-        } 
+        }
         #endregion
     }
 }

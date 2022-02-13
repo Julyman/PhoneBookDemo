@@ -4,36 +4,26 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dme.PhoneBook.Models
 {
     public class User
     {
         public long Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime Dob { get; set; }
-        public string PictureThumbnail { get; set; }
 
-        #region Public methods
-        
-        // debug method
-        public static IEnumerable<User> Generate(int count)
-        {
-            List<User> values = new List<User>(count);
-            DateTime dt = DateTime.Parse("2001-01-01");
-            for (int i = 0; i < count; i++)
-            {
-                values.Add(new User
-                {
-                    FirstName = "Andy",
-                    LastName = $"Anderson {i + 1}",
-                    Dob = dt.AddDays(i),
-                });
-            }
-            return values;
-        } 
-        #endregion
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime Dob { get; set; }
+
+        [StringLength(255)]
+        public string PictureThumbnail { get; set; }
     }
 }

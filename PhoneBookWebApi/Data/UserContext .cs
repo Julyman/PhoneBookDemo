@@ -51,7 +51,7 @@ namespace Dme.PhoneBook.Data
             else if (string.IsNullOrWhiteSpace(orderByQueryString))
             {
                 // no query params
-                value = Users.OrderBy(x => x.LastName).AsQueryable();
+                value = Users.OrderBy(x => x.Id).AsQueryable();
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Dme.PhoneBook.Data
                 var orderQuery = orderQueryBuilder.ToString().TrimEnd(',', ' ');
                 if (string.IsNullOrWhiteSpace(orderQuery))
                 {
-                    value = Users.OrderBy(x => x.LastName).AsQueryable();
+                    value = Users.OrderBy(x => x.Id).AsQueryable();
                 }
                 else
                 {

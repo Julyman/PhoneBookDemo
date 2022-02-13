@@ -40,9 +40,7 @@ namespace Dme.PhoneBook.WebAPI.Controllers
             var user = await _context.Users.FindAsync(id);
 
             if (user == null)
-            {
                 return NotFound();
-            }
 
             return user;
         }
@@ -54,10 +52,9 @@ namespace Dme.PhoneBook.WebAPI.Controllers
         public async Task<IActionResult> PutUser(long id, User user)
         {
             if (id != user.Id)
-            {
                 return BadRequest();
-            }
 
+            // black-whole code
             _context.Entry(user).State = EntityState.Modified;
 
             try
@@ -67,20 +64,15 @@ namespace Dme.PhoneBook.WebAPI.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!UserExists(id))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
-
             return NoContent();
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
@@ -97,9 +89,7 @@ namespace Dme.PhoneBook.WebAPI.Controllers
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
-            {
                 return NotFound();
-            }
 
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
